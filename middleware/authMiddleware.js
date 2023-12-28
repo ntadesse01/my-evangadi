@@ -10,7 +10,7 @@ async function authMiddleware(req, res, next) {
   }
   const token = authHeader.split(" ")[1];
   try {
-    const { userid, username } = jwt.verify(token, "secret");
+    const { userid, username } = jwt.verify(token, process.env.SECRET);
     req.user = { username, userid };
     next();
   } catch (error) {
